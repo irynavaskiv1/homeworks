@@ -22,7 +22,9 @@ zen = "Beautiful is better than ugly." \
 print(zen.find('better'))
 print(zen.find('never'))
 print(zen.find('is'))
+
 # task 1/b
 print(zen.upper())
+
 # task 1/c
 print(zen.replace('i', '&'))

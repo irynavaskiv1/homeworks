@@ -1,4 +1,3 @@
-
 # task 2/a
 a = int(input('Please, enter your number '))
 a = int(a)
@@ -9,9 +8,10 @@ d3 = a // 100
 print("Добуток цифр числа:", d1 * d2 * d3)
 
 # task 2/b
-a = [1, 2, 3, 4]
-print('Число в реверсному порядку:', reversed(a))
+my_list1 = [1, 2, 3, 4]
+my_list1.reverse()
+print('Числа в реверсному порядку', my_list1)
 
 # task 2/c
-a = [1, 2, 3, 4]
-print('Посортовані цифри, що входять в число:', sorted(a))
+my_list2 = [4, 3, 3, 2]
+print('Посортовані цифри, що входять в число:', sorted(my_list2))
