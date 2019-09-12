@@ -1,4 +1,8 @@
-# task1
+# task
+# Створіть скрипт, який би запитував у користувача значення змінної a,
+# та змінної b, і після цього вивів на екран результати арифметичних операцій,
+# над цими змінними.
+
 variable_a = int(input('Please, enter a variable '))
 variable_b = int(input('Please, enter b variable '))
 
