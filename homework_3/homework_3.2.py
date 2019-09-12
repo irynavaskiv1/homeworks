@@ -11,7 +11,9 @@ print("Добуток цифр числа:", d1 * d2 * d3)
 my_list1 = [1, 2, 3, 4]
 my_list1.reverse()
 print('Числа в реверсному порядку', my_list1)
+print(my_list1[-1:-4])
 
 # task 2/c
 my_list2 = [4, 3, 3, 2]
 print('Посортовані цифри, що входять в число:', sorted(my_list2))
+

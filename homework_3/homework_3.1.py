@@ -18,10 +18,11 @@ zen = "Beautiful is better than ugly." \
       "If the implementation is hard to explain, it's a bad idea." \
       "If the implementation is easy to explain, it may be a good idea." \
       "Namespaces are one honking great idea -- let's do more of those!"
+
 # task 1/a
-print(zen.find('better'))
-print(zen.find('never'))
-print(zen.find('is'))
+print(zen.count('better'))
+print(zen.count('never'))
+print(zen.count('is'))
 
 # task 1/b
 print(zen.upper())
