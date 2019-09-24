@@ -5,6 +5,7 @@ print(find_arefmet(12, 14))
 
 # ------------------------------------------------------------------
 
+
 def find_absolyt(arg):
     """This function that returns the absolute value of a number"""
     if arg > 0:
@@ -13,14 +14,32 @@ def find_absolyt(arg):
         return arg
     else:
         return -arg
+
+
 print(find_absolyt(-4))
 
+
+def find_absolyt_second(arg):
+    """This function that returns the absolute value of a number"""
+    if arg > 0:
+        return arg
+    elif arg == 0:
+        return arg
+    else:
+        return abs(arg)
+
+
+print(find_absolyt_second(-4))
+
 # ------------------------------------------------------------------
+
 
 def max_value(*arg):
     """This function  finds the maximum number of two numbers,
     and also use the DocStrings documentation lines in the function."""
     return max(arg)
+
+
 print(max_value(4, 6))
 
 
@@ -37,6 +56,7 @@ def max_value_second(a, b):
         print('I do not know your number')
 
 # -----------------------------------------------------------------------
+
 
 def area_rectangle(a, b):
     return a * b
@@ -82,6 +102,7 @@ print('The End!')
 
 # ------------------------------------------------------------------------
 
+
 def sum_digits(*args):
     """This function that calculates the sum of the digits of the number
     entered."""
@@ -89,6 +110,8 @@ def sum_digits(*args):
     for variable in args:
         i = variable + i
     return i
+
+
 print(sum_digits())
 
 # -------------------------------------------------------------------------
@@ -111,8 +134,8 @@ def division(a, b):
 
 
 def calculator():
- """ First calculator program"""
-action = input('Please, enter your action:  ')
+ """ First calculator program """
+action = input('Please, enter your action: ')
 while True:
     if action == 'adding':
         a = float(input('Please, enter your first number:  '))
@@ -138,6 +161,8 @@ while True:
         print('I do not know your action')
 calculator()
 #  ---------------------------------------------------------
+
+
 def calculator1():
     """ Second calculator program"""
     a = input('Please, enter first value: ')
@@ -158,5 +183,6 @@ def calculator1():
         print('Your result is ', d)
     else:
         print('I do not know :)')
+
 
 calculator1()
