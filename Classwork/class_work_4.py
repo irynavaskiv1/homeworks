@@ -20,61 +20,70 @@ from random import randint
 
 def iras_game():
     """First game with random number"""
-    user_number = input("Please, guess the number ")
-    program_number = randint(1, 100)
     while True:
+        program_number = randint(1, 100)
+        user_number = input("Please, guess the number ")
+        if user_number == 'quit':
+            break
         if int(user_number) == int(program_number):
             print('You guessed the number! Congrats!')
         elif int(user_number) < int(program_number):
             print('Your number is less')
-            break
         elif int(user_number) > int(program_number):
             print('Your number is greater')
-            break
         else:
             print('I do not know your number')
 
 
 iras_game()
 
-# Напишіть скрипт, який обчислює площу прямокутника a*b,
-# площу трикутника 0.5*h*a, площу кола pi*r**2.
-# (для виконання завдання необхідно імпортувати  модуль math,
-# а з нього функцію pow() та значення змінної пі).
 
-from math import pow
+def iras_game_second():
+    """Second game with random number"""
+    while True:
+        try:
+            number = int(input("Please, guess the number "))
+            randNumber = randint(1, 100)
+            if number == randNumber:
+                print("Equal")
+            elif number < randNumber:
+                print("less")
+            else:
+                print("greater")
+        except:
+            break
 
-def calcutaling_area():
-    figure = input("Please, enter your figure: ")
-    if figure == "rectangle":
-        a = input("Please enter first side ")
-        b = input("Please enter second side ")
-        print(a * b)
-    elif figure == "triangle":
-        a = input("Please enter first side ")
-        h = input("Please enter height ")
-        print(a * h * 0.5)
-    elif figure == "circle":
-        r = input("Please enter radius ")
+iras_game_second()
 
 
+import math
 
 
-calcutaling_area()
+def calculation_area():
+    """Script for calculation area"""
+    while True:
+        try:
+            figure = input("Please, enter your figure: ")
+            if figure == "rectangle":
+                a = int(input("Please enter first side "))
+                b = int(input("Please enter second side "))
+                rectangle_area = (b * a)
+                print('Your area is ', rectangle_area)
+                break
+            elif figure == "triangle":
+                c = int(input("Please enter first side "))
+                d = int(input("Please enter height "))
+                triangle_area = c * d * 0.5
+                print('Your area is ', triangle_area)
+                break
+            elif figure == "circle":
+                r = int(input("Please enter radius "))
+                pi = math.pi
+                circle_area = pi * r **2
+                print('Your area is ', circle_area)
+                break
+        except:
+            break
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+calculation_area()
