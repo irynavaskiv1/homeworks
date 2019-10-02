@@ -1,6 +1,5 @@
-def sorter(*textbooks):
-    """Fix the loop!"""
-    return sorted(textbooks,  key=str.lower)
-
-
-print(sorter('Algebra', 'Geometria', 'English', 'aldk'))
+def list_animals(animals):
+    list = ''
+    for i in range(animals):
+        list += str(i + 1) + '. ' + animals[i] + '\n'
+    return list

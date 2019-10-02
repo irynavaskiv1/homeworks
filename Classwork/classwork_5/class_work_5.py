@@ -58,21 +58,21 @@ while not done:
                 done = True
 
         # малюємо дуги
-        # pygame.draw.arc(gameDisplay, WHITE, (10, 50, 280, 100), 0, PI)
-        # pygame.draw.arc(gameDisplay, PINK, (50, 30, 200, 150), PI, 2 * PI, 3)
+        pygame.draw.arc(gameDisplay, WHITE, (10, 50, 280, 100), 0, PI)
+        pygame.draw.arc(gameDisplay, PINK, (50, 30, 200, 150), PI, 2 * PI, 3)
 
         # малюємо коли
-        # pygame.draw.circle(gameDisplay, YELLOW, (200, 300), 150,5)
-        # pygame.draw.circle(gameDisplay, PINK, (300, 300), 150)
+        pygame.draw.circle(gameDisplay, YELLOW, (200, 300), 150,5)
+        pygame.draw.circle(gameDisplay, PINK, (300, 300), 150)
 
         # малюємо еліпс
-        # pygame.draw.ellipse(gameDisplay, GREEN, (100, 300, 280, 100))
+        pygame.draw.ellipse(gameDisplay, GREEN, (100, 300, 280, 100))
 
         # малюємо ламану
-        # pygame.draw.lines(gameDisplay, WHITE, True,
-        #                   [[10, 10], [140, 70], [280, 20]], 2)
-        # pygame.draw.aalines(gameDisplay, WHITE, False,
-        #                     [[10, 100], [140, 170], [280, 110]])
+        pygame.draw.lines(gameDisplay, WHITE, True,
+                          [[10, 10], [140, 70], [280, 20]], 2)
+        pygame.draw.aalines(gameDisplay, WHITE, False,
+                            [[10, 100], [140, 170], [280, 110]])
         # малюємо лінію
         pygame.draw.line(gameDisplay, WHITE, [10, 30], [290, 15], 3)
         pygame.draw.line(gameDisplay, WHITE, [10, 50], [290, 35])
