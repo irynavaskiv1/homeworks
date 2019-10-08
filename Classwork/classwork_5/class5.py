@@ -1,57 +1,76 @@
-from tkinter import *
-from random import randrange as rnd, choice
-import time
+import pygame
 
-# створюємо вікно
-root = Tk()
+pygame.init()
 
-root.geometry('800x600')
+WHITE = (255, 255, 255)
+ORANGE = (255, 150, 100)
+PINK = (230, 50, 230)
+BLACK = (0, 0, 0)
+GRAY = (125, 125, 125)
+LIGHT_BLUE = (64, 128, 255)
+GREEN = (0, 200, 64)
+YELLOW = (225, 225, 0)
+PI = 3.14
 
-# задаємо назву вікна
-root.title("Сaught the BALL")
+DISPLAY_WIDTH = 600
+DISPLAY_HEIGH = 600
 
-canv = Canvas(root, bg='white')
-canv.pack(fill=BOTH, expand=1)
+gameDisplay = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGH))
 
-colors = ['red', 'orange', 'yellow', 'green', 'blue']
+pygame.display.set_caption("IRAS FIRST GAME")
 
+# Loop until the user clicks the close button.
+done = False
 
-############################################################
-def new_ball():
-    global x, y, r
-    canv.delete(ALL)
-    x = rnd(100, 700)
-    y = rnd(100, 500)
-    r = rnd(30, 50)
-    # canv.create_text(20,20,text=str(points), font = 'Arial 20')
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
 
-    canv.create_oval(x - r, y - r, x + r, y + r, fill=choice(colors), width=0)
-    root.after(1000, new_ball)
+# -------- Main Program Loop -----------
+while not done:
+    # --- Main event loop
+    for event in pygame.event.get():  # User did something
+        if event.type == pygame.QUIT:  # If user clicked close
+            done = True  # Flag that we are done so we exit this loop
 
+    # --- Game logic should go here
+    # --- Drawing code should go here
+    # First, clear the screen to white. Don't put other
+    # drawing commands above this,
+    # or they will be erased with this command.
 
-###################################################################
+    # --- Go ahead and update the screen with what we've drawn.
+    pygame.display.update()
 
-# функція, яка провіряє, чи не лежить
-# точка event.x,event.y дальше, ніж r
-# від точки x,y. Для цього, з допомогою
-# теореми Піфагора ми знаходимо
-# відстань між двома точками і порівнюємо
-# з радіусом круга.
-#
-# якщо відстань(гіпотенуза) більша за радіус
-# круга, то клік відбувся зовні круга
-#
-# якщо відстань(гіпотенуза) менша за радіус
-# круга, то клік відбувся всередині круга
+    # --- Limit to 60 frames per second
+    clock.tick(60)
 
-def click(event):
-    global points
-    if (event.y - y) ** 2 + (event.x - x) ** 2 <= r ** 2:
-        points += 1  # змінна підрахунку кількості співпадінь (вгадувань)
+    done = False
 
+    while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done = True
 
-points = 0
-new_ball()
-canv.bind('<Button-1>', click)
+        # малюю дуги
+        pygame.draw.arc(gameDisplay, WHITE, (10, 50, 280, 100), 0, PI)
+        pygame.draw.arc(gameDisplay, PINK, (50, 30, 200, 150), PI, 2 * PI, 3)
 
-mainloop()
+        # малюю коли
+        pygame.draw.circle(gameDisplay, YELLOW, (200, 300), 150,5)
+        pygame.draw.circle(gameDisplay, PINK, (300, 300), 150)
+
+        # малюю еліпс
+        pygame.draw.ellipse(gameDisplay, GREEN, (100, 300, 280, 100))
+
+        # малюю ламану
+        pygame.draw.lines(gameDisplay, WHITE, True,
+                          [[10, 10], [140, 70], [280, 20]], 2)
+        pygame.draw.aalines(gameDisplay, WHITE, False,
+                            [[10, 100], [140, 170], [280, 110]])
+        # малюю лінію
+        pygame.draw.line(gameDisplay, WHITE, [10, 30], [290, 15], 3)
+        pygame.draw.line(gameDisplay, WHITE, [10, 50], [290, 35])
+        pygame.draw.aaline(gameDisplay, WHITE, [10, 70], [290, 55])
+
+        pygame.display.update()
+        clock.tick(60)
