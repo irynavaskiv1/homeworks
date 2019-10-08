@@ -70,7 +70,7 @@ def fraction():
 
 # fraction()
 
-# Написати  програму, яка аналізує введене число та в залежності від числа
+# 4.Написати  програму, яка аналізує введене число та в залежності від числа
 # видає день тижня, який відповідає цьому числу (1 це Понеділок, 2 це Вівторок
 # і т.д.) . Врахувати випадки введення чисел від 8 і більше, а також випадки
 # введення не числових даних.
@@ -107,12 +107,31 @@ def weekday():
 # weekday()
 
 
-def weekday_return():
-    day = {1:'Sunday', 2: 'Monday', 3: 'Tuesday', 4: 'Wednesday', 'Thursday', 'Friday',
-           'Saturday'}
-    inp = input('Please, enter day of week: ')
-    if inp in day:
-        print("Your day of week is", inp)
+class Week:
+    def __init__(self, day):
+        self.day = day
+
+    def __str__(self):
+        return repr(self.day)
 
 
-weekday_return()
+def weekday_second():
+    days = {1: 'Sunday', 2: 'Monday', 3: 'Tuesday', 4: 'Wednesday',
+            5: 'Thursday', 6: 'Friday', 7: 'Saturday'}
+    day = int(input('Please, enter day of week: '))
+    days.get(day)
+    if day <= 0 or day >= 8:
+        return print('Your day is', days[day])
+    else:
+        raise Exception(' ')
+
+
+while True:
+    try:
+        weekday_second()
+        break
+    except ValueError:
+        print('Your should enter number from1 to 7')
+        break
+    finally:
+        print("End of program")
