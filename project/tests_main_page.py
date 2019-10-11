@@ -5,13 +5,14 @@ from project.test_base import BaseSelenium
 class BurgerMenuTestCase(BaseSelenium):
 
     def testing_if_exist_burger_menu(self):
+        """тестуємо чи є бургер меню кнопка"""
         self.login()
         time.sleep(2)
         burger_button = self.selenium.find_element_by_xpath(
             '/html/body/div[1]/div/div/nav/div/div/div[2]/ul/li/a/span[1]/i')
         burger_button.click()
         drop_down_menu = self.selenium.find_element_by_class_name(
-                        'dropdown-menu')
+                         'dropdown-menu')
         time.sleep(2)
         li_all_words = set(drop_down_menu.text.split('\n'))
         set_en = {'My Profile', 'Account Information', 'Reports',
@@ -21,6 +22,7 @@ class BurgerMenuTestCase(BaseSelenium):
         self.assertEquals(set_en, li_all_words)
 
     def testing_flow_button(self):
+        """тестуємо flow кнопку"""
         self.login()
         flow_button = self.selenium.find_element_by_id('info-tabs-tab-1')
         flow_button.click()
@@ -32,6 +34,7 @@ class BurgerMenuTestCase(BaseSelenium):
         self.assertEquals(set_words, set_text)
 
     def testing_location_menu(self):
+        """тестуємо location кнопку"""
         self.login()
         location_button = self.selenium.find_element_by_id('info-tabs-tab-2')
         location_button.click()
@@ -44,6 +47,7 @@ class BurgerMenuTestCase(BaseSelenium):
         self.assertEquals(set_words, set_text)
 
     def testing_building_data(self):
+        """тестуємо building кнопку"""
         self.login()
         building_data_button = self.selenium.find_element_by_id(
             'info-tabs-tab-3')
@@ -71,6 +75,7 @@ class SearchTestCase(BaseSelenium):
 class FilterTestCase(BaseSelenium):
 
     def testing_if_filter_exist(self):
+        """тестуємо чи є filter кнопка"""
         self.login()
         time.sleep(2)
         filter_button = self.selenium.find_element_by_xpath(
@@ -86,6 +91,7 @@ class FilterTestCase(BaseSelenium):
         self.assertEquals(set_words, set_text)
 
     def testing_if_apply_and_clear_exist(self):
+        """тестуємо чи є apply кнопка"""
         self.login()
         time.sleep(2)
         filter_button = self.selenium.find_element_by_xpath(
@@ -98,4 +104,3 @@ class FilterTestCase(BaseSelenium):
         time.sleep(3)
         self.assertEquals(set_words, set_text)
 
-class Map
