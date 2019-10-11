@@ -2,9 +2,9 @@ import time
 from project.test_base import BaseSelenium
 
 
-class MainPageTestCase(BaseSelenium):
+class BurgerMenuTestCase(BaseSelenium):
 
-    def testing_burger_menu(self):
+    def testing_if_exist_burger_menu(self):
         self.login()
         time.sleep(2)
         burger_button = self.selenium.find_element_by_xpath(
@@ -57,5 +57,45 @@ class MainPageTestCase(BaseSelenium):
         self.assertEquals(set_words, set_text)
 
 
+class SearchTestCase(BaseSelenium):
+
+    def testing_if_search_exist(self):
+        self.login()
+        time.sleep(2)
+        search_field = self.selenium.find_element_by_xpath(
+            '/html/body/div[1]/div/div/div[1]/div[1]/div[1]/div[3]/div/div[1]'
+            '/div/div/input')
+        search_field.send_keys('Lviv')
 
 
+class FilterTestCase(BaseSelenium):
+
+    def testing_if_filter_exist(self):
+        self.login()
+        time.sleep(2)
+        filter_button = self.selenium.find_element_by_xpath(
+            '/html/body/div[1]/div/div/div[1]/div[1]/div[1]/div[2]/span[1]')
+        filter_button.click()
+        filter_block = self.selenium.find_element_by_class_name(
+            'form-horizontal')
+        set_text = {filter_block.text.split('\n')}
+        set_words = {'Partner preference', 'Building Info.', 'Buildings',
+                     'Buildings with..', 'Structures', 'Pre-plans',
+                     'Area(sq.ft.)'}
+        time.sleep(3)
+        self.assertEquals(set_words, set_text)
+
+    def testing_if_apply_and_clear_exist(self):
+        self.login()
+        time.sleep(2)
+        filter_button = self.selenium.find_element_by_xpath(
+            '/html/body/div[1]/div/div/div[1]/div[1]/div[1]/div[2]/span[1]')
+        filter_button.click()
+        filter_block = self.selenium.find_element_by_class_name(
+            'form-group')
+        set_text = {filter_block.text.split('\n')}
+        set_words = {'Apply', 'Clear'}
+        time.sleep(3)
+        self.assertEquals(set_words, set_text)
+
+class Map
