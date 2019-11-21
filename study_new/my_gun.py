@@ -13,7 +13,7 @@ def main():
 
 
 class Ball:
-    def __init__(self, x=40, y=450):
+    def __init__(self, x=40, y=450, vx=0, vy=0):
         """
         Args:
         x - початкове розположення кульки по горизонталі
@@ -22,8 +22,8 @@ class Ball:
         self.x = x
         self.y = y
         self.r = 10
-        self.vx = 0
-        self.vy = 0
+        self.vx = vx
+        self.vy = vy
         self.color = choice(['blue', 'green', 'red', 'brown'])
         self.id = canvas.create_oval(
             self.x - self.r,
@@ -44,11 +44,11 @@ class Ball:
         )
 
     def move(self):
-        """Переместить мяч по прошествии единицы времени.
-        Метод описывает перемещение мяча за один кадр перерисовки. 
-        То есть, обновляет значения self.x и self.y с учетом скоростей 
-        self.vx и self.vy, силы гравитации, действующей на мяч,
-        и стен по краям окна (размер окна 800х600).
+        """Перемістити м'яч після одиниці часу.
+         Метод описує переміщення м'яча за один кадр перемальовування.
+         Тобто, оновлює значення self.x і self.y з урахуванням швидкостей
+         self.vx і self.vy, сили гравітації, що діє на м'яч,
+         і стін по краях вікна (розмір вікна 800х600).
         """
         # FIXME
         if self.x + self.vx < 0:
@@ -92,25 +92,29 @@ class Gun:
     def __init__(self):
         self.f2_power = 10
         self.f2_on = 0
-        self.an = 1
-        self.id = canvas.create_line(20, 450, 50, 420, width=7)  
+        self.angle = 1
+        self.x = 20
+        self.y = 450
+        self.id = canvas.create_line(self.x, self.y, 50, 420, width=7)
 
     def fire2_start(self, event):
         self.f2_on = 1
 
     def fire2_end(self, event):
-        """Выстрел мячом.
-        Происходит при отпускании кнопки мыши.
-        Начальные значения компонент скорости мяча vx и vy
-         зависят от положения мыши.
+        """Постріл м'ячем.
+         Відбувається при відпуску кнопки миші.
+         Початкові значення компонент швидкості м'яча vx і vy
+         залежать від положення миші.
         """
         global balls, bullet
         bullet += 1
-        new_ball = Ball()
-        new_ball.r += 5
-        self.an = math.atan((event.y - new_ball.y) / (event.x - new_ball.x))
-        new_ball.vx = self.f2_power * math.cos(self.an)
-        new_ball.vy = - self.f2_power * math.sin(self.an)
+        r = 5
+        self.angle = math.atan((event.y - self.y) / (event.x - self.x))
+        self.x = 20 + max(self.f2_power, 20) * math.cos(self.angle),
+        self.y = 450 + max(self.f2_power, 20) * math.sin(self.angle)
+        vx = self.f2_power * math.cos(self.angle)
+        vy = - self.f2_power * math.sin(self.angle)
+        new_ball = Ball(x, y, vx, vy)
         balls += [new_ball]
         self.f2_on = 0
         self.f2_power = 10
@@ -118,14 +122,14 @@ class Gun:
     def targetting(self, event=0):
         """Ціль, залежить від розположення мишки"""
         if event:
-            self.an = math.atan((event.y - 450) / (event.x - 20))
+            self.angle = math.atan((event.y - 450) / (event.x - 20))
         if self.f2_on:
-            canvas.itemconfig(self.id, fill='orange')
+            canvas.itemconfig(self.id, fill='red')
         else:
             canvas.itemconfig(self.id, fill='black')
         canvas.coords(self.id, 20, 450,
-                      20 + max(self.f2_power, 20) * math.cos(self.an),
-                      450 + max(self.f2_power, 20) * math.sin(self.an)
+                      20 + max(self.f2_power, 20) * math.cos(self.angle),
+                      450 + max(self.f2_power, 20) * math.sin(self.angle)
                       )
 
     def power_up(self):
@@ -181,22 +185,24 @@ def new_game(event=''):
     canvas.bind('<ButtonRelease-1>', gun1.fire2_end)
     canvas.bind('<Motion>', gun1.targetting)
 
+
+def time_handler():
     target.live = 1
     while target.live or balls:
-        for b in balls:
-            if b.vx == 0 and b.vy == 0:
-                canvas.delete(b.id)
-            b.move()
-            for i in targets:
-                if b.hittest(i) and i.live:
+        for ball in balls:
+            if ball.vx == 0 and ball.vy == 0:
+                canvas.delete(ball.id)
+            ball.move()
+            for i in target:
+                if ball.hittest(i) and i.live:
                     i.live = 0
                     i.hit()
-                    targets.remove(i)
-        if len(targets) == 0:
+                    target.remove(i)
+        if len(target) == 0:
             canvas.bind('<Button-1>', '')
             canvas.bind('<ButtonRelease-1>', '')
-            canvas.itemconfig(screen1, text='Вы уничтожили цели за ' +
-                                            str(bullet) + ' выстрелов')
+            canvas.itemconfig(screen1, text='Ціль знщена за ' +
+                                            str(bullet) + ' вистрілів')
         canvas.update()
         time.sleep(0.03)
         gun1.targetting()
